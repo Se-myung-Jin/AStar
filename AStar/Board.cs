@@ -15,15 +15,19 @@ namespace AStar
         public int DestY { get; private set; }
         public int DestX { get; private set; }
 
+        Player _player;
+
         public enum TileType
         {
             Empty,
             Wall,
         }
 
-        public void Initialize(int size)
+        public void Initialize(int size, Player player)
         {
             if (size % 2 == 0) return;
+
+            _player = player;
 
             Tile = new TileType[size, size];
             Size = size;
@@ -141,7 +145,9 @@ namespace AStar
             {
                 for (int x = 0; x < Size; x++)
                 {
-                    if (y == DestY && x == DestX)
+                    if (y == _player.PosY && x == _player.PosX)
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                    else if (y == DestY && x == DestX)
                         Console.ForegroundColor = ConsoleColor.Yellow;
                     else
                         Console.ForegroundColor = GetTileColor(Tile[y, x]);
