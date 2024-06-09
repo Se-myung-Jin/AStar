@@ -1,10 +1,19 @@
 ﻿namespace AStar
 {
-    internal class Program
+    class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Board board = new Board();
+            board.Initialize(25);
+
+            Console.CursorVisible = false;
+
+            while (true)
+            {
+                Console.SetCursorPosition(0, 0);
+                board.Render();
+            }
         }
     }
 }
